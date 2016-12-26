@@ -29,7 +29,10 @@ def _get_floating_ip(manager, ip_address):
 def _disassociate_ip(manager, ip_address):
     " Disassociate the floating ip. "
     floating_ip = _get_floating_ip(manager, ip_address)
-    floating_ip.unassign()
+    try:
+        floating_ip.unassign()
+    except digitalocean.baseapi.DataReadError:
+        print("Floating IP not associated to a droplet. Not trying to unassign.")
 
 def _associate_ip(manager, ip_address, droplet_id):
     " Associate the floating ip with a droplet "
