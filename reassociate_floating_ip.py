@@ -15,8 +15,8 @@ except KeyError:
     sys.exit(1)
 
 PARSER = argparse.ArgumentParser()
-PARSER.add_argument('ip_address', type=str)
 PARSER.add_argument('droplet_id', type=str)
+PARSER.add_argument('ip_address', type=str)
 
 def _get_manager():
     " Sets up the manager "
