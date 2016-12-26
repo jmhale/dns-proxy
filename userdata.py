@@ -1,4 +1,4 @@
-#!/bin/bash
+USER_DATA = '''#!/bin/bash
 ##BEGIN
 
 ## Update apt cache, install sniproxy and bind
@@ -7,19 +7,21 @@ apt-get -y update
 apt-get install -y sniproxy bind9
 
 ## Set IP Addresses
-MA_IP=`dig +short hale-ma.ddns.net | tail -1`
-DC_IP=`dig +short dyn.makeithale.com | tail -1`
+ADMIN_IPS=(`dig +short dyn.makeithale.com | tail -1`)
+USER_IPS=(`dig +short hale-ma.ddns.net | tail -1` `dig +short dyn.makeithale.com | tail -1`)
 DNS_1_IP=`dig +short dns-vip-1.makeithale.com | tail -1`
 DNS_2_IP=`dig +short dns-vip-2.makeithale.com | tail -1`
 
 ## Set ufw rules
-ufw allow from $DC_IP proto tcp to any port 22
-ufw allow from $MA_IP to any port 53
-ufw allow from $DC_IP to any port 53
-ufw allow from $MA_IP proto tcp to any port 80
-ufw allow from $DC_IP proto tcp to any port 80
-ufw allow from $MA_IP proto tcp to any port 443
-ufw allow from $DC_IP proto tcp to any port 443
+for ADMIN_IP in "${ADMIN_IPS[@]}"; do
+  ufw allow from ${ADMIN_IP} proto tcp to any port 22
+done
+
+for USER_IP in "${USER_IPS[@]}"; do
+  ufw allow from ${USER_IP} to any port 53
+  ufw allow from ${USER_IP} proto tcp to any port 80
+  ufw allow from ${USER_IP} proto tcp to any port 443
+done
 ufw enable
 
 ## sniproxy config
@@ -144,3 +146,4 @@ update-rc.d sniproxy defaults
 service bind9 restart
 sniproxy
 ##END
+'''
