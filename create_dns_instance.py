@@ -35,11 +35,12 @@ def create_droplet(region):
                                    backups=False,
                                    user_data=USER_DATA)
     droplet.create()
-    print(droplet.id)
+    return droplet.id
 
 def main(region):
     " Create the droplet in the given region "
-    create_droplet(region)
+    droplet_id = create_droplet(region)
+    print(droplet_id)
 
 if __name__ == "__main__":
     ARGS = PARSER.parse_args()
