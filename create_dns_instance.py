@@ -34,7 +34,8 @@ def create_droplet(region):
                                    ssh_keys=keys,
                                    backups=False,
                                    user_data=USER_DATA)
-    print(droplet.create())
+    droplet.create()
+    print(droplet.id)
 
 def main(region):
     " Create the droplet in the given region "
