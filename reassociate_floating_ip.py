@@ -11,7 +11,7 @@ import digitalocean
 try:
     DO_TOKEN = os.environ["DO_TOKEN"]
 except KeyError:
-    print("Please set the environment variable DO_TOKEN")
+    print("Please set your DigitalOcean API key in the environment variable DO_TOKEN")
     sys.exit(1)
 
 PARSER = argparse.ArgumentParser()
