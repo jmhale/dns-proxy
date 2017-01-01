@@ -1,1 +1,1 @@
-digitalocean
+python-digitalocean
