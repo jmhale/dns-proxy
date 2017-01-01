@@ -42,18 +42,19 @@ def _disassociate_ip(manager, ip_address):
             out.write('DROPLET_ID=' + str(old_droplet_id) + '\n')
         print("Unassociating Floating IP from Droplet: {}".format(old_droplet_id))
         floating_ip.unassign()
-        time.sleep(15)
     except digitalocean.baseapi.DataReadError:
         print("Floating IP not associated to a droplet. Not trying to unassign.")
 
 def _associate_ip(manager, ip_address, droplet_id):
     " Associate the floating ip with a droplet "
     floating_ip = _get_floating_ip(manager, ip_address)
-    try:
-        floating_ip.assign(droplet_id)
-    except digitalocean.baseapi.DataReadError:
-        print("Floating IP not available for assignment. Exiting.")
-        sys.exit(1)
+    while True:
+        try:
+            floating_ip.assign(droplet_id)
+            break
+        except digitalocean.baseapi.DataReadError:
+            print("Floating IP yet not available for assignment. Sleeping 10 seconds...")
+            time.sleep(10)
 
 def reassociate_ip(droplet_id, ip_address):
     " Reassociate floating IP with Droplet "
