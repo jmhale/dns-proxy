@@ -21,8 +21,7 @@ PARSER.add_argument('region', type=str)
 
 IP_ADDRESSES = {
     'nyc1': '45.55.107.76',
-    'nyc3': '159.203.144.22',
-    'sfo1': '45.55.115.192'
+    'nyc3': '159.203.144.22'
 }
 
 def _get_manager():
