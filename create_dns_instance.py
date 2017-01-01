@@ -41,7 +41,7 @@ def main(region):
     " Create the droplet in the given region "
     droplet_id = create_droplet(region)
     with open('.properties', 'a') as out:
-        out.write('DROPLET_ID=' + droplet_id + '\n')
+        out.write('DROPLET_ID=' + str(droplet_id) + '\n')
     print(droplet_id)
 
 if __name__ == "__main__":
