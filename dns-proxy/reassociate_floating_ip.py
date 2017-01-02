@@ -17,12 +17,7 @@ except KeyError:
 
 PARSER = argparse.ArgumentParser()
 PARSER.add_argument('droplet_id', type=str)
-PARSER.add_argument('region', type=str)
-
-IP_ADDRESSES = {
-    'nyc1': '45.55.107.76',
-    'nyc3': '159.203.144.22'
-}
+PARSER.add_argument('ip_address', type=str)
 
 def _get_manager():
     " Sets up the manager "
@@ -61,10 +56,10 @@ def reassociate_ip(droplet_id, ip_address):
     _disassociate_ip(manager, ip_address)
     _associate_ip(manager, ip_address, droplet_id)
 
-def main(droplet_id, region):
+def main(droplet_id, ip_address):
     " Entrypoint for commandline execution "
-    reassociate_ip(droplet_id, IP_ADDRESSES[region])
+    reassociate_ip(droplet_id, ip_address)
 
 if __name__ == "__main__":
     ARGS = PARSER.parse_args()
-    main(ARGS.droplet_id, ARGS.region)
+    main(ARGS.droplet_id, ARGS.ip_address)
