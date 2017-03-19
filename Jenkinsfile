@@ -6,13 +6,13 @@ pipeline {
     }
 
     parameters {
-      choice('REGION', ['nyc1', 'nyc3'], 'Which region to recycle?')
+      choice(choices: 'nyc1\nnyc3', description: 'Which region to recycle?', name: 'region')
     }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..$REGION'
+                echo 'Building..${params.REGION}'
             }
         }
         stage('Test') {
