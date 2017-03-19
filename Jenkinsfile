@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-      choiceParam('REGION', ['nyc1', 'nyc3'], 'Which region to recycle?')
+      choice('REGION', ['nyc1', 'nyc3'], 'Which region to recycle?')
     }
 
     stages {
