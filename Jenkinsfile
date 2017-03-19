@@ -1,4 +1,6 @@
 pipeline {
+    // Reminder: Job isn't pulling this automatically yet. Need to paste it into the pipeline
+    // config, so I'm not checking in every little change while I mess around.
     agent any
 
     environment {
@@ -10,17 +12,21 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Start Replacement DNS Instance') {
+            environment {
+              IP = credentials("${params.region}_ip") //This doesn't work.
+            }
             steps {
-                echo "Building..${params.REGION}"
+                echo "Building..${params.region}"
+                echo "Using IP: ${IP}"
             }
         }
-        stage('Test') {
+        stage('Move Floating IP Address') {
             steps {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Terminate Old DNS Instance') {
             steps {
                 echo 'Deploying....'
             }
