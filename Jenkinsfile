@@ -1,28 +1,21 @@
-#!groovy
 pipeline {
-  stages {
-    stage('Start DNS Instance') {
-      node {
-        checkout scm
-        sh "echo 'Starting DNS instance'"
-      }
-    }
+    agent any
 
-    stage('Re-associate Floating IP') {
-      node() {
-        sh "echo 'Re-associating floating IP'"
-      }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-
-    stage('Terminate DNS Instance') {
-      node() {
-        sh "echo 'Terminating DNS instance'"
-      }
-    }
-  }
-  post {
-    always {
-      deleteDir()
-    }
-  }
 }
