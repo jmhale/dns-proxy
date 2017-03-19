@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-      DO_TOKEN = credentials('DO_TOKEN')
+      DO_TOKEN = credentials('DigitalOcean API Key')
     }
 
     parameters {
