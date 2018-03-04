@@ -12,6 +12,24 @@ pipeline {
     }
 
     stages {
+        def installed = fileExists 'bin/activate'
+
+        if (!installed) {
+            stage("Install Python Virtual Enviroment") {
+                sh 'virtualenv --no-site-packages .'
+            }
+        }
+
+        stage('Check out code') {
+            steps {
+                git url: 'https://github.com/jmhale/dns-proxy'
+                sh '''
+                    source bin/activate
+                    pip install -r requirements.txt
+                    deactivate
+                   '''
+            }
+        }
         stage('Start Replacement DNS Instance') {
             environment {
               IP = credentials("${params.region}_ip") //This doesn't work.
