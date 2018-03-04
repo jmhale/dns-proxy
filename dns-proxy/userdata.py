@@ -143,5 +143,6 @@ update-rc.d sniproxy defaults
 
 service bind9 restart
 sniproxy
+curl -sSL https://agent.digitalocean.com/install.sh | sh
 ##END
 '''
