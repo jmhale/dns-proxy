@@ -134,6 +134,9 @@ EOF
 cat << EOF > /etc/bind/zones.override
 zone "mlb.tv." { type master; file "/etc/bind/db.override"; };
 zone "mlb.com." { type master; file "/etc/bind/db.override"; };
+zone "mlbstatic.com." { type master; file "/etc/bind/db.override"; };
+zone "milb.com." { type master; file "/etc/bind/db.override"; };
+zone "mlbam.net." { type master; file "/etc/bind/db.override"; };
 zone "icanhazip.com." { type master; file "/etc/bind/db.override"; };
 EOF
 
