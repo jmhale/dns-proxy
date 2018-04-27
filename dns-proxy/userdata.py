@@ -137,6 +137,13 @@ zone "mlb.com." { type master; file "/etc/bind/db.override"; };
 zone "mlbstatic.com." { type master; file "/etc/bind/db.override"; };
 zone "milb.com." { type master; file "/etc/bind/db.override"; };
 zone "mlbam.net." { type master; file "/etc/bind/db.override"; };
+zone "bamstatic.com." { type master; file "/etc/bind/db.override"; };
+zone "bamgrid.com." { type master; file "/etc/bind/db.override"; };
+zone "bamnetworks.com." { type master; file "/etc/bind/db.override"; };
+zone "ticketing-client.com." { type master; file "/etc/bind/db.override"; };
+zone "conviva.com." { type master; file "/etc/bind/db.override"; };
+zone "livefyre.com." { type master; file "/etc/bind/db.override"; };
+zone "krxd.net." { type master; file "/etc/bind/db.override"; };
 zone "icanhazip.com." { type master; file "/etc/bind/db.override"; };
 EOF
 
