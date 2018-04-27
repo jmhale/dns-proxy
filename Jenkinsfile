@@ -12,16 +12,11 @@ pipeline {
     }
 
     stages {
-        def installed = fileExists 'bin/activate'
-
-        if (!installed) {
-            stage("Install Python Virtual Enviroment") {
-                sh 'virtualenv --no-site-packages .'
-            }
-        }
-
         stage('Check out code') {
             steps {
+                if (!fileExists ('bin/activate')) {
+                    sh 'virtualenv --no-site-packages .'
+                }
                 git url: 'https://github.com/jmhale/dns-proxy'
                 sh '''
                     source bin/activate
