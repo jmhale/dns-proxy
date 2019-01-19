@@ -1,6 +1,7 @@
-###DNS proxy
+# DNS proxy
 
-TL;DR: Creates an instance on DigitalOcean running bind9 and sniproxy to allow proxying some traffic through your instance.
+## Description
+Creates a instance on DigitalOcean, running bind9 and sniproxy, to allow for proxying of selected traffic through the instance, so it egresses via DigitalOcean's network.
 
 This is a set of scripts that I created to help automate deploying a couple of DNS/proxy instances to DigtialOcean droplets.
 
